@@ -176,15 +176,15 @@ check_cmd "Getting address info"
 
 # STUDENT TASK: Extract the internal key (the x-only pubkey) from the descriptor
 # WRITE YOUR SOLUTION BELOW:
-DESC=$($ADDR_INFO | jq -r '.desc')
-INTERNAL_KEY=$(echo "$DESC" | cut -d "]" -f 2 | cut -d ")" -f 1)
+DESC=$(echo $ADDR_INFO | jq -r '.desc')
+INTERNAL_KEY=$(echo $DESC | cut -d "]" -f 2 | cut -d ")" -f 1)
 check_cmd "Extracting key from descriptor"
 INTERNAL_KEY=$(trim "$INTERNAL_KEY")
 
 # STUDENT TASK: Create a proper descriptor with just the key
 # WRITE YOUR SOLUTION BELOW:
 echo "Using internal key: $INTERNAL_KEY"
-SIMPLE_DESCRIPTOR=$(echo tr($INTERNAL_KEY))
+SIMPLE_DESCRIPTOR=$(echo "tr($INTERNAL_KEY)")
 echo "Simple descriptor: $SIMPLE_DESCRIPTOR"
 
 # STUDENT TASK: Get a proper descriptor with checksum
