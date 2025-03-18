@@ -176,7 +176,8 @@ check_cmd "Getting address info"
 
 # STUDENT TASK: Extract the internal key (the x-only pubkey) from the descriptor
 # WRITE YOUR SOLUTION BELOW:
-INTERNAL_KEY=$($ADDR_INFO | jq -r .desc | cut -d "]" -f 2 | cut -d ")" -f 1)
+DESC=$($ADDR_INFO | jq -r '.desc')
+INTERNAL_KEY=$(echo "$DESC" | cut -d "]" -f 2 | cut -d ")" -f 1)
 check_cmd "Extracting key from descriptor"
 INTERNAL_KEY=$(trim "$INTERNAL_KEY")
 
